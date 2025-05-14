@@ -1,0 +1,308 @@
+@font-face {
+    font-family: 'Pacifico';
+    src: url('https://example.com/pacifico-font.ttf'); /* 新增独特字体路径 */
+}
+
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+    line-height: 1.6;
+    background-color: #ffe53b;
+    color: #333; /* 修改: 将字体颜色从默认值改为深灰色 */
+    font-size: 20px;
+}
+
+.app-header {
+    background-color: rgba(255, 255, 255, 0.5); /* 修改: 将背景颜色设置为白色半透明 */
+    color: #333; /* 标题文字：深灰色，比黑色更柔和 */
+    padding: 1.5rem; /* 增加上下内边距，提升呼吸感 */
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); /* 修改: 调整阴影颜色为白色 */
+    display: flex; /* 新增：使用弹性布局 */
+    justify-content: space-between; /* 新增：左右对齐 */
+    align-items: center; /* 新增：垂直居中对齐 */
+    height: 80px; /* 新增：增加 header 的高度 */
+}
+
+.app-title {
+    font-size: 28px; /* 增大标题字号 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* 添加轻微阴影效果 */
+    color: #212121; /* 稍深的文字色 */
+}
+
+.user-info {
+    display: flex; /* 新增：使用弹性布局 */
+    align-items: center; /* 新增：垂直居中对齐 */
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 10px;
+    overflow: hidden; /* 新增：确保图片不会超出边界 */
+}
+
+.username {
+    font-size: 18px; /* 新增：设置用户名字号 */
+    color: #333; /* 新增：设置用户名颜色 */
+}
+
+.login-container {
+    max-width: 360px; /* 缩小容器宽度，移动端更精致 */
+    margin-top: 100px; /* 增加顶部间距 */
+    padding: 24px; /* 增大内边距 */
+    background-color: rgba(255, 255, 255, 0.8); /* 设置背景颜色为半透明白色 */
+    border-radius: 12px; /* 更圆润的边框 */
+    box-shadow: 0 8px 24px rgba(255, 243, 176, 0.4); /* 淡黄色透明阴影 */
+}
+
+.form-title {
+    font-size: 30px; /* 增大提示文本字号 */
+    margin-bottom: 10px; /* 设置提示文本与输入框的间距 */
+    color: #3F51B5; /* 设置提示文本颜色为蓝色 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* 添加轻微阴影效果 */
+    font-family: '黑体', sans-serif; /* 修改为黑体 */
+}
+
+.form-label {
+    color: #4A148C; /* 设置标签文字颜色为紫色 */
+    font-size: 18px; /* 增大标签字号 */
+    font-weight: 500; /* 稍粗字体 */
+}
+
+.form-control {
+    border: 3px solid transparent; /* 输入框边框：透明 */
+    border-radius: 8px; /* 输入框圆角 */
+    font-size: 16px;
+    padding: 12px; /* 增大输入框内边距，触控更友好 */
+    background-color: rgba(255, 255, 255, 0.7); /* 输入框背景：半透明白 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    color: #000000; /* 设置输入框文字颜色为黑色 */
+}
+
+.form-control:focus {
+    border-color: transparent; /* 聚焦时边框：透明 */
+    background-color: white; /* 聚焦时背景变白，突出状态 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 聚焦时阴影加深 */
+}
+
+.btn-primary {
+    background-color: #FBC02D; /* 按钮主色：明亮黄 */
+    border: none;
+    padding: 14px; /* 增大按钮内边距 */
+    border-radius: 10px; /* 按钮圆角 */
+    font-size: 18px; /* 增大按钮文字 */
+    font-weight: 600;
+    color: #FFFFFF; /* 设置按钮文字颜色为白色 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* 添加按钮文字阴影效果 */
+    transition: transform 0.1s, box-shadow 0.3s; /* 新增点击微动画 */
+}
+
+.btn-primary:hover {
+    background-color: #F5B700; /* 悬停色：深一号黄 */
+    box-shadow: 0 4px 16px rgba(251, 192, 45, 0.3); /* 扩散阴影 */
+    transform: scale(1.02); /* 轻微放大 */
+}
+
+.chicken-img {
+    width: 35px; /* 根据实际需求调整图片宽度 */
+    height: auto; /* 保持图片比例 */
+    vertical-align: middle; /* 垂直居中对齐 */
+    margin-top: -5px; /* 新增：上移图片5像素 */
+}
+
+/* 修改：关闭按钮样式，确保其在注册表单内部右上方 */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #f00;
+}
+
+/* 确保注册表单有相对定位，以便关闭按钮的绝对定位生效 */
+#register-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(255, 243, 176, 0.4);
+    position: relative; /* 新增：设置相对定位 */
+}
+
+#register-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #3F51B5;
+}
+
+#register .form-label {
+    color: #4A148C; /* 紫色标签文字 */
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#register .form-control {
+    border: 3px solid transparent;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #000000;
+}
+
+#register .form-control:focus {
+    border-color: transparent;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#register .btn-primary {
+    background-color: #FBC02D;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s, box-shadow 0.3s;
+}
+
+#register .btn-primary:hover {
+    background-color: #F5B700;
+    box-shadow: 0 4px 16px rgba(251, 192, 45, 0.3);
+    transform: scale(1.02);
+}
+
+/* 新增：移动端优化 */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* 减小整体字体大小 */
+    }
+
+    .app-header {
+        padding: 1rem; /* 减少顶部内边距 */
+    }
+
+    .app-title {
+        font-size: 24px; /* 减小标题字体大小 */
+    }
+
+    .user-info {
+        font-size: 14px; /* 减小用户信息字体大小 */
+    }
+
+    .main-content {
+        flex-direction: column; /* 列表改为纵向排列 */
+        margin-top: 10px; /* 减少顶部间距 */
+        padding: 5px; /* 减少内边距 */
+    }
+
+    .sidebar {
+        flex: 0 0 100%; /* 左侧列占满宽度 */
+        margin: 5px;
+        padding: 10px;
+        height: auto; /* 高度自适应 */
+    }
+
+    .content-column {
+        flex: 0 0 100%; /* 中间和右侧列占满宽度 */
+        padding: 10px;
+        margin: 5px;
+        height: auto; /* 高度自适应 */
+        font-size: 20px; /* 减小字体大小 */
+    }
+
+    .chicken-img {
+        width: 25px; /* 减小图片宽度 */
+    }
+
+    footer {
+        font-size: 10px; /* 减小页脚字体大小 */
+    }
+}
+
+/* 新增：页脚样式 */
+footer {
+    background-color: #000000; /* 黑色背景 */
+    color: #FFFFFF; /* 白色文字 */
+    text-align: center; /* 文字居中 */
+    padding: 10px 0; /* 修改: 减少上下内边距 */
+    font-size: 12px; /* 修改: 减小页脚字体大小 */
+    width: 100%; /* 宽度占满整个页面 */
+    z-index: 1000; /* 确保页脚始终在最上层 */
+    margin-top: auto; /* 自动上边距，使页脚推到页面底部 */
+    position: sticky; /* 新增：使页脚始终位于底部 */
+    bottom: 0; /* 新增：固定在底部 */
+}
+
+.footer-content {
+    margin: 0 auto; /* 内容居中 */
+    max-width: 1200px; /* 最大宽度限制 */
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px; /* 修改: 减少顶部间距 */
+    padding: 5px; /* 修改: 减少内边距 */
+}
+
+.sidebar {
+    flex: 0 0 12%; /* 修改: 减小左侧列宽度比例 */
+    margin: 5px;
+    padding: 10px; /* 修改: 减少内边距 */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    float: left;
+    margin-right: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 300px;
+}
+
+.content-column {
+    flex: 0 0 40%; 
+    padding: 10px; 
+    display: flex;
+    margin: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    float: left;
+    font-size: 24px; 
+    height: 650px;
+    color: #FFA07A; /* 修改: 将字体颜色从橙红色改为深灰色 */
+    background: rgba(255, 255, 255, 0.5); /* 新增: 半透明白色背景 */
+}
+
+.content-column:last-child {
+    border-right: none; /* 最后一列不显示右侧分界线 */
+}
+
+.learn-column {
+    background-image: url('resources/15.png'); /* 确保背景图片路径正确 */
+    background-size: cover; /* 背景图片完全覆盖区域 */
+    background-position: left; /* 背景图片居中显示 */
+    background-repeat: no-repeat; /* 背景图片不重复 */
+}
+
+
+.travel-column {
+    background-image: url('resources/trip.jpg'); /* 确保背景图片路径正确 */
+    background-size: cover; /* 背景图片完全覆盖区域 */
+    background-position: center; /* 背景图片居中显示 */
+    background-repeat: no-repeat; /* 背景图片不重复 */
+}

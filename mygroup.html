@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的队伍 - SCU自动组队鸡</title>
+    <style>
+        body {
+            background-image: url('resources/mygroupbg.png'); 
+            background-size: cover;
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            aspect-ratio: 1 / 1; /* 设置宽高比为1:1 */
+            width: 80vw; /* 动态宽度，占屏幕宽度的80% */
+            max-width: 600px; /* 最大宽度限制 */
+            height: auto; /* 高度根据宽高比自动调整 */
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: absolute; /* 添加绝对定位 */
+            top: 50%; /* 垂直居中 */
+            left: 50%; /* 水平居中 */
+            transform: translate(-50%, -50%); /* 调整到中心 */
+        }
+
+        /* 新增：返回主页按钮样式 */
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 新增：返回主页按钮 -->
+        <button class="back-button" onclick="goBackToMain()">返回主页</button>
+
+        <h2>我的队伍</h2>
+        <div id="teams-list">
+            <!-- 队伍列表将通过JavaScript动态生成 -->
+        </div>
+    </div>
+
+    <script>
+        // 新增：返回主页的函数
+        function goBackToMain() {
+            window.location.href = 'main.html';
+        }
+
+        // 动态加载队伍列表
+        document.addEventListener("DOMContentLoaded", function () {
+            const teamsList = document.getElementById('teams-list');
+
+            // 模拟获取队伍数据
+            fetch("/api/user/teams") // 替换为实际的API路径
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(team => {
+                        const teamItem = document.createElement('div');
+                        teamItem.className = 'team-item';
+                        teamItem.textContent = team.name;
+                        teamsList.appendChild(teamItem);
+                    });
+                })
+                .catch(error => console.error("Failed to load teams:", error));
+        });
+    </script>
+</body>
+</html>

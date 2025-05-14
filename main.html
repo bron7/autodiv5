@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCU自动组队鸡 - 主页</title>
+    <!-- 使用绝对路径引用静态资源 -->
+    <link href="/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100" style="background-image: url('resources/mainbg.jpg'); background-size: cover;">
+    <!-- 顶部导航栏 -->
+    <header class="app-header">
+        <div class="app-title">SCU自动组队 <img src="resources/basketchicken.jpg" alt="鸡" class="chicken-img"></div>
+        <div class="user-info">
+            <div class="user-avatar">
+                <!-- 修改：确保图片路径正确 -->
+                <img src="" alt="用户头像" style="width: 40px; height: 40px; border-radius: 50%;" id="user-avatar">
+            </div>
+            <span class="username">用户名</span>
+        </div>
+    </header>
+
+    <!-- 播放栏 -->
+    <div class="playbar">
+        播放信息
+    </div>
+
+    <!-- 主体内容 -->
+    <div class="main-content container-fluid">
+        <!-- 左侧列 -->
+        <div class="sidebar">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="#" class="text-decoration-none" id="my-info-link">我的信息</a></li>
+                <li class="list-group-item">我的星级</li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none">参加过的队伍</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none" id="honor-link">荣誉系统</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none">需评分</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none">有bug？反馈信息</a></li>
+            </ul>
+        </div>
+        <!-- 中间列（去组队学习！） -->
+        <div class="content-column learn-column">
+            <h2>去组队学习！</h2>
+            <a href="#" class="btn btn-primary btn-lg">点击进入</a>
+        </div>
+        <!-- 右侧列（去吃喝玩乐！） -->
+        <div class="content-column travel-column">
+            <h2>去组队吃喝玩乐！</h2>
+            <a href="#" class="btn btn-primary btn-lg">点击进入</a>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 SCU自动组队鸡. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 使用绝对路径引用静态资源 -->
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="/script.js"></script>
+    <script>
+        // 页面加载时，从 localStorage 中读取用户名并替换页面中的用户名显示
+        document.addEventListener('DOMContentLoaded', () => {
+            const loggedInUsername = localStorage.getItem('loggedInUsername');
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser')); // 新增：读取完整的用户信息
+
+            if (loggedInUsername) {
+                document.querySelector('.username').textContent = loggedInUsername;
+            }
+
+            if (loggedInUser) {
+                const userAvatar = document.querySelector('.user-avatar img');
+                // 修改：直接从 ms/ms.json 中的 avatar 属性加载头像
+                fetch('ms/ms.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const user = data.find(entry => entry.email === loggedInUser.email);
+                        if (user && user.avatar) {
+                            userAvatar.src = user.avatar;
+                            userAvatar.alt = '用户头像';
+                        }
+                    });
+            }
+
+            // 新增：为“我的信息”链接添加点击事件监听器
+            const myInfoLink = document.getElementById('my-info-link');
+            myInfoLink.addEventListener('click', (event) => {
+                event.preventDefault(); // 阻止默认行为
+                // 将用户数据存储在 localStorage 中
+                localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+                window.location.href = 'myms.html'; // 跳转到 myms.html 页面
+            });
+
+            // 新增：为“荣誉系统”链接添加点击事件监听器
+            const honorLink = document.getElementById('honor-link');
+            honorLink.addEventListener('click', (event) => {
+                event.preventDefault(); // 阻止默认行为
+                // 将用户数据存储在 localStorage 中
+                localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+                window.location.href = 'honor.html'; // 跳转到 honor.html 页面
+            });
+
+            // 新增：为用户头像添加点击事件监听器
+            const userAvatar = document.getElementById('user-avatar');
+            userAvatar.addEventListener('click', (event) => {
+                event.preventDefault(); // 阻止默认行为
+                // 将用户数据存储在 localStorage 中
+                localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+                window.location.href = 'myms.html'; // 跳转到 myms.html 页面
+            });
+        });
+    </script>
+</body>
+</html>
