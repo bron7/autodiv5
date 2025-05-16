@@ -68,14 +68,21 @@ document.getElementById('register').addEventListener('submit', function(event) {
 
 function saveUserData(data) {
     // 使用 AJAX 请求将用户数据发送到后端
-    fetch('/save-user-data', {
+    fetch('/api/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(err => {
+                throw new Error(err.error || '注册失败');
+            });
+        }
+        return response.json();
+    })
     .then(result => {
         if (result.error) {
             alert(result.error); // 显示错误信息
@@ -91,7 +98,7 @@ function saveUserData(data) {
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('注册失败，请重试');
+        alert(error.message || '注册失败，请重试');
     });
 }
 
@@ -162,8 +169,8 @@ loginForm.addEventListener('submit', async (event) => {
     }
 
     try {
-        // 从JSON文件中加载用户数据
-        const response = await fetch(userDataUrl);
+        // 从数据库获取用户数据
+        const response = await fetch('/api/users');
         const users = await response.json();
 
         console.log('Loaded users:', users); // 添加调试信息，查看加载的用户数据

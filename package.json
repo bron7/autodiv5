@@ -4,7 +4,9 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node start.js",
+    "start:main": "node server.js",
+    "start:honor": "node honor-backend/server.js"
   },
   "keywords": [],
   "author": "",
